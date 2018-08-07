@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1flvsrl" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.16.2">
+  <bpmn:process id="loanApproval" name="Loan Approval" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Loan Request Received">
+      <bpmn:outgoing>SequenceFlow_05dis6c</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_0boeou9" name="Calculate Interest" camunda:delegateExpression="${calculateInterestService}">
+      <bpmn:incoming>SequenceFlow_05dis6c</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0tmi1so</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_11czage" name="Loan Approved">
+      <bpmn:incoming>SequenceFlow_0tmi1so</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_05dis6c" sourceRef="StartEvent_1" targetRef="Task_0boeou9" />
+    <bpmn:sequenceFlow id="SequenceFlow_0tmi1so" sourceRef="Task_0boeou9" targetRef="EndEvent_11czage" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="loanApproval">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="166" y="115" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="149" y="158" width="70" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_00g3kyl_di" bpmnElement="Task_0boeou9">
+        <dc:Bounds x="293" y="93" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_11czage_di" bpmnElement="EndEvent_11czage">
+        <dc:Bounds x="497" y="115" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="158" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05dis6c_di" bpmnElement="SequenceFlow_05dis6c">
+        <di:waypoint x="202" y="133" />
+        <di:waypoint x="293" y="133" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0tmi1so_di" bpmnElement="SequenceFlow_0tmi1so">
+        <di:waypoint x="393" y="133" />
+        <di:waypoint x="497" y="133" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
